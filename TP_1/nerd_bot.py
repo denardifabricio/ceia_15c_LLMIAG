@@ -5,29 +5,36 @@ import rags as rags
 h.configure_environment()
 
 
-# Inicializar el módulo que brinda respuestas a las preguntas.
-rag_bot = rags.rag()
-    
+def init_process(cv_text=None):
+     # Inicializar el módulo que brinda respuestas a las preguntas.
+    bot = rags.rag(cv_text)
+
+    return bot
+
+st.session_state.rag_bot = init_process()
+
+if 'chat_history' not in st.session_state:
+        st.session_state.chat_history = []
+
+
+
 # Interacción con el múdulo que brinda respuesta a las preguntas.
 def set_cv_text():
+
     cv_text = ""
     if st.session_state["uploaded_file"] is not None:
         cv_text = h.get_text_from_pdf(st.session_state["uploaded_file"])
 
-    
-
-
         if (cv_text is None):
             st.error("No se pudo extraer el texto del CV.")
         else:
-            rag_bot.cv_text = cv_text
-            rag_bot.set_cv_text(cv_text)
+            st.session_state.rag_bot = init_process(cv_text)
+            st.info("CV cargado exitosamente. Haga preguntas sobre este.")
+            st.session_state.chat_history = []
 
 
 def get_response(user_input):
-    #set_cv_text()
-
-    response = rag_bot.get_response(user_input)
+    response = st.session_state.rag_bot.get_response(user_input)
     return response
 
 
@@ -39,9 +46,7 @@ def submit():
         st.session_state.chat_history.append({"role": "system", "prompt": response})
         st.session_state["user_input"] = ""
 
-# Preparar el estado de la sesión. 
-if 'chat_history' not in st.session_state:
-    st.session_state.chat_history = []
+
 
 
 #COMIENZO DEL FORMULARIO DE STREAMLIT

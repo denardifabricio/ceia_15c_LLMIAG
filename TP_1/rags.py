@@ -7,8 +7,7 @@ class rag ():
 
     def set_embedding_model(self,text):
         self.embedding_model = AutoModel.from_pretrained('jinaai/jina-embeddings-v2-base-en', trust_remote_code=True)
-        self.embedding_model.max_seq_length = 128
-
+    
         self.embeddings = self.embedding_model.encode(text)
 
         self.pinecone_model = pm.PineconeModel()
@@ -20,10 +19,13 @@ class rag ():
         self.pinecone_model.insert(cvs)
 
 
-    
 
-    def __init__(self):
-        self.set_embedding_model(h.get_txt_default_cv())
+
+    def __init__(self, cv_text = None):
+        if cv_text is not None:
+            self.set_embedding_model(cv_text)
+        else:
+            self.set_embedding_model(h.get_txt_default_cv())
         
     def set_cv_text(self,cv_text):
         self.set_embedding_model(cv_text)
