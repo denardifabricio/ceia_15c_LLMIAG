@@ -13,18 +13,23 @@ class GroqModel():
         self.model = model
 
         # Set the system prompt
-        self.system_prompt = {
+        '''self.system_prompt = {
             "role": "system",
             "content":
             "Te escucho atentamente. Escribe tu pregunta aquí..."
-        }
+        }'''
 
-        self.chat_history = [self.system_prompt]
+        self.chat_history = []
         
 
     
     def generate_response_with_llama(self,query, relevant_doc, max_tokens=1024, temperature=1):
-        self.chat_history.append({"role": "user", "content":f"Contexto: {relevant_doc}, Pregunta: {query}"})
+        if len(self.chat_history) == 0:
+            context = f"Contexto: {relevant_doc},"
+        else:
+            context = ''
+
+        self.chat_history.append({"role": "user", "content":f"{context} Pregunta: {query}"})
 
         response = self.llama.chat.completions.create(model= self.model,
                                                     messages=self.chat_history,

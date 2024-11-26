@@ -11,7 +11,8 @@ def init_process(cv_text=None):
 
     return bot
 
-st.session_state.rag_bot = init_process()
+if 'rag_bot' not in st.session_state:
+    st.session_state.rag_bot = init_process()
 
 if 'chat_history' not in st.session_state:
         st.session_state.chat_history = []
