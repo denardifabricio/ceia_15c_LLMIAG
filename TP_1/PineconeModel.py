@@ -6,14 +6,16 @@ import time
 
 
 
+
+
 PINECONE_API_KEY = os.getenv("PINECONE_API_KEY")
 
 #Crear índice
-INDEX_NAME = "cvs-index"
+INDEX_NAME = "cvs-index-fabriciodenardi"
 
 class PineconeModel:
 
-    def create_index(self, dimension=768, metric="cosine", cloud='aws', region='us-east-1'):
+    def create_index(self, dimension=1536, metric="cosine", cloud='aws', region='us-east-1'):
         if not self.pc.has_index(self.index_name):
             self.pc.create_index(
                 name=self.index_name,
@@ -55,6 +57,11 @@ class PineconeModel:
             vectors=records,
             namespace="cv-namespace"
         )
+
+    def is_index_empty(self):
+        stats = self.pc.Index(self.index_name).describe_index_stats()
+        num_vectors = stats["total_vector_count"]
+        return num_vectors == 0
 
     def retrieve_relevant_docs(self,query_embedding, top_k=5):
         index = self.pc.Index(self.index_name)
