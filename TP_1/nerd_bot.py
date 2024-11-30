@@ -24,7 +24,12 @@ def set_cv_text():
 
     cv_text = ""
     if st.session_state["uploaded_file"] is not None:
-        cv_text = h.get_text_from_pdf(st.session_state["uploaded_file"])
+
+        file_name = st.session_state["uploaded_file"].name
+        h.save_file(file_name, st.session_state["uploaded_file"].getbuffer())
+        
+
+        cv_text = h.get_text_from_pdf(file_name)
 
         if (cv_text is None):
             st.error("No se pudo extraer el texto del CV.")

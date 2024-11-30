@@ -17,7 +17,7 @@ class rag ():
     def set_embedding_model(self,cv_text):
         self.embedding_model = OpenAIEmbedding() #AutoModel.from_pretrained('jinaai/jina-embeddings-v2-base-en', trust_remote_code=True)
 
-        self.pinecone_model = pm.PineconeModel()
+        self.pinecone_model = pm.PineconeModel(index_name=  "-".join(["cvs","index",cv_text[2]]))
         self.groq_model = gm.GroqModel()
 
         if  self.pinecone_model.is_index_empty():
@@ -63,5 +63,5 @@ class rag ():
         return self.groq_model.generate_response_with_llama(user_input,", ".join(rel))
 
 
-rag_bot = rag()
-rag_bot.get_response("¿Durante cuanto tiempo trabajó en kinexo?")
+#rag_bot = rag()
+#rag_bot.get_response("¿Durante cuanto tiempo trabajó en kinexo?")

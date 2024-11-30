@@ -62,6 +62,9 @@ class PineconeModel:
         stats = self.pc.Index(self.index_name).describe_index_stats()
         num_vectors = stats["total_vector_count"]
         return num_vectors == 0
+    
+    def delete_index(self):
+        self.pc.delete_index(self.index_name)
 
     def retrieve_relevant_docs(self,query_embedding, top_k=5):
         index = self.pc.Index(self.index_name)

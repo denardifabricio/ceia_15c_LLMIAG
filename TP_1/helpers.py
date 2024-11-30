@@ -19,7 +19,7 @@ def get_text_from_pdf(file):
         with open(output_path, 'w') as output_file:
             output_file.write(text)
 
-        return (text, output_path)
+        return (text, output_path,os.path.splitext(file)[0].lower())
     except FileNotFoundError:
         return None
     except Exception as e:
@@ -28,12 +28,17 @@ def get_text_from_pdf(file):
 
 def get_default_cv():
     configure_environment()
-    cv_path = "CVFabricioDenardi.pdf"
+    cv_path = "FabricioDenardi.pdf"
     return cv_path
 
 def get_txt_default_cv():
     cv_path = get_default_cv()
     return get_text_from_pdf(cv_path)
+
+def save_file(file_name, content):
+    with open( file_name, "wb") as f:
+        f.write(content)
+    
 
 def read_file(file_path):
     '''Lee un archivo y devuelve su contenido. Adicionalmente graba el contenido de este en un txt con el mismo nombre.'''
