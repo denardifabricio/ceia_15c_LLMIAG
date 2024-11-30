@@ -37,3 +37,4 @@ Esto no es un código productivo, si así lo fuese habría que hacer cambios tal
 ## Eres libre de utilizar el código
 Puedes utilizar el código, modificarlo. Recuerda que si ganas dinero con él, invitame un café de Starbucks.
 
+PROFE, EN ESTE MOMENTO ME ENCUENTRO HACIENDO ARREGLOS EN EL TEMA DE CHUNKS QUE VIMOS EN CLASE !!!!
