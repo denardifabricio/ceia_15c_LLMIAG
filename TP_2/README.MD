@@ -23,6 +23,10 @@ Si tienes problemas con las direcciones relativas, intenta con la ubicación abs
 streamlit run /Users/fabricio.denardi/Documents/CEIA/LLMIAG/repo/ceia_15c_LLMIAG/TP_1/nerd_bot.py
 ```
 
+
+Esto es una evolución de TP1, decidí copiar y pegar la base y adaptarlo. En un entorno real debería haber módulos compartidos, pero lo que quiero es que quede una especie de SNAPSHOP por cada TP.
+
+
 ## Demo
 Puedes ver una demo del bot funcionando en: demo_nerd_bot_tp2.mov
 [Ver video](demo_nerd_bot_tp2.mov)
