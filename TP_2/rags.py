@@ -34,7 +34,7 @@ class rag ():
         {
             "FabricioDenardi": "texto del currículum 1",
             "JoseContreras": "texto del currículum 2"
-        }. El nombre del candidato está en formato CamelCase y sin espacios. El texto del currículum es un texto en formato libre.
+        }. El nombre del candidato está en formato CamelCase y sin espacios. Cuando escribas sus nombres separa con un espacio el nombre y apellido. El texto del currículum es un texto en formato libre.
         Tener en cuenta que puede haber preguntas relacionadas a todos los currículums o a un currículum en específico.
         '''
 
