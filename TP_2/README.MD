@@ -9,6 +9,13 @@ Denardi, Fabricio
 15-2024
 
 
+# Diagrama base
+<img src="Agentes General.png"  align="center"/>
+
+## Ejemplo
+
+<img src="Agente Ejemplo.png"  align="center"/>
+
 # Comentarios
 
 Para ejecutar el bot utilizar el siguiente comando:
